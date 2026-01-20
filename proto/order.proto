@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package order.v1;
+
+option go_package = "github.com/Abazin97/common/gen/go/oms/order;order";
+
+service OrderService {
+  rpc CreateOrder(CreateOrderRequest) returns (Order);
+  rpc GetOrder(GetOrderRequest) returns (Order);
+  rpc UpdateOrder(Order) returns (Order);
+}
+
+message ItemsQuantity {
+  string id = 1;
+}
+
+message Item {
+  string id = 1;
+  string name = 2;
+  int32 quantity = 3;
+  string price = 4;
+}
+
+message Order {
+  string id = 1;
+  string status = 2;
+  repeated Item items = 3;
+  string payment_link = 4;
+}
+
+message GetOrderRequest {
+  string id = 1;
+  string customer_id = 2;
+}
+
+message CreateOrderRequest {
+  string customer_id = 1;
+}

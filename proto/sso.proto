@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package auth;
+package sso.v1;
 
-option go_package = "github.com/Abazin97/sso/gen/go/sso";
+option go_package = "/sso;sso";
 
 // Auth is service for managing permissions and roles.
 service Auth {

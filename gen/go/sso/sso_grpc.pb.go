@@ -2,13 +2,12 @@
 // versions:
 // - protoc-gen-go-grpc v1.5.1
 // - protoc             v6.33.0
-// source: sso/sso.proto
+// source: sso.proto
 
-package _go
+package sso
 
 import (
 	context "context"
-
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -20,14 +19,14 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Auth_Register_FullMethodName              = "/auth.Auth/Register"
-	Auth_Login_FullMethodName                 = "/auth.Auth/Login"
-	Auth_IsAdmin_FullMethodName               = "/auth.Auth/IsAdmin"
-	Auth_Logout_FullMethodName                = "/auth.Auth/Logout"
-	Auth_ChangePasswordInit_FullMethodName    = "/auth.Auth/ChangePasswordInit"
-	Auth_ChangePasswordConfirm_FullMethodName = "/auth.Auth/ChangePasswordConfirm"
-	Auth_RequestOTP_FullMethodName            = "/auth.Auth/RequestOTP"
-	Auth_VerifyOTP_FullMethodName             = "/auth.Auth/VerifyOTP"
+	Auth_Register_FullMethodName              = "/sso.v1.Auth/Register"
+	Auth_Login_FullMethodName                 = "/sso.v1.Auth/Login"
+	Auth_IsAdmin_FullMethodName               = "/sso.v1.Auth/IsAdmin"
+	Auth_Logout_FullMethodName                = "/sso.v1.Auth/Logout"
+	Auth_ChangePasswordInit_FullMethodName    = "/sso.v1.Auth/ChangePasswordInit"
+	Auth_ChangePasswordConfirm_FullMethodName = "/sso.v1.Auth/ChangePasswordConfirm"
+	Auth_RequestOTP_FullMethodName            = "/sso.v1.Auth/RequestOTP"
+	Auth_VerifyOTP_FullMethodName             = "/sso.v1.Auth/VerifyOTP"
 )
 
 // AuthClient is the client API for Auth service.
@@ -357,7 +356,7 @@ func _Auth_VerifyOTP_Handler(srv interface{}, ctx context.Context, dec func(inte
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Auth_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "auth.Auth",
+	ServiceName: "sso.v1.Auth",
 	HandlerType: (*AuthServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -394,5 +393,5 @@ var Auth_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "sso/sso.proto",
+	Metadata: "sso.proto",
 }

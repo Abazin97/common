@@ -7,11 +7,12 @@
 package stock
 
 import (
-	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
-	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
+
+	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
+	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 )
 
 const (
@@ -179,8 +180,8 @@ func (x *CheckIfItemIsInStockRequest) GetItems() []*ItemsQuantity {
 
 type CheckIfItemIsInStockResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	InStock       bool                   `protobuf:"varint,1,opt,name=InStock,proto3" json:"InStock,omitempty"`
-	Items         []*Item                `protobuf:"bytes,2,rep,name=Items,proto3" json:"Items,omitempty"`
+	InStock       bool    `protobuf:"varint,1,opt,name=InStock,proto3" json:"InStock,omitempty"`
+	Items         []*Item `protobuf:"bytes,2,rep,name=Items,proto3" json:"Items,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }

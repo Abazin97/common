@@ -39,5 +39,5 @@ message CreateOrderRequest {
     int32 quantity = 2;
   }
   string customer_id = 1;
-  repeated OrderProduct items = 2;
+  repeated Item items = 2;
 }

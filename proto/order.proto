@@ -26,6 +26,7 @@ message Order {
   string status = 2;
   repeated Item items = 3;
   string payment_link = 4;
+  string customer_id = 5;
 }
 
 message GetOrderRequest {

@@ -24,7 +24,7 @@ const (
 
 type ItemsQuantity struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int32                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -59,16 +59,16 @@ func (*ItemsQuantity) Descriptor() ([]byte, []int) {
 	return file_order_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *ItemsQuantity) GetId() int32 {
+func (x *ItemsQuantity) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 type Item struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int32                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	Quantity      int32                  `protobuf:"varint,3,opt,name=quantity,proto3" json:"quantity,omitempty"`
 	Price         string                 `protobuf:"bytes,4,opt,name=price,proto3" json:"price,omitempty"`
@@ -106,11 +106,11 @@ func (*Item) Descriptor() ([]byte, []int) {
 	return file_order_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *Item) GetId() int32 {
+func (x *Item) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 func (x *Item) GetName() string {
@@ -136,7 +136,7 @@ func (x *Item) GetPrice() string {
 
 type Order struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int32                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	Status        string  `protobuf:"bytes,2,opt,name=status,proto3" json:"status,omitempty"`
 	Items         []*Item `protobuf:"bytes,3,rep,name=items,proto3" json:"items,omitempty"`
 	PaymentLink   string  `protobuf:"bytes,4,opt,name=payment_link,json=paymentLink,proto3" json:"payment_link,omitempty"`
@@ -175,11 +175,11 @@ func (*Order) Descriptor() ([]byte, []int) {
 	return file_order_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *Order) GetId() int32 {
+func (x *Order) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 func (x *Order) GetStatus() string {
@@ -212,7 +212,7 @@ func (x *Order) GetCustomerId() string {
 
 type GetOrderRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int32                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	CustomerId    string                 `protobuf:"bytes,2,opt,name=customer_id,json=customerId,proto3" json:"customer_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -248,11 +248,11 @@ func (*GetOrderRequest) Descriptor() ([]byte, []int) {
 	return file_order_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *GetOrderRequest) GetId() int32 {
+func (x *GetOrderRequest) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 func (x *GetOrderRequest) GetCustomerId() string {
@@ -372,21 +372,21 @@ const file_order_proto_rawDesc = "" +
 	"\n" +
 	"\vorder.proto\x12\border.v1\"\x1f\n" +
 	"\rItemsQuantity\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x05R\x02id\"\\\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"\\\n" +
 	"\x04Item\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x05R\x02id\x12\x12\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x1a\n" +
 	"\bquantity\x18\x03 \x01(\x05R\bquantity\x12\x14\n" +
 	"\x05price\x18\x04 \x01(\tR\x05price\"\x99\x01\n" +
 	"\x05Order\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x05R\x02id\x12\x16\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x16\n" +
 	"\x06status\x18\x02 \x01(\tR\x06status\x12$\n" +
 	"\x05items\x18\x03 \x03(\v2\x0e.order.v1.ItemR\x05items\x12!\n" +
 	"\fpayment_link\x18\x04 \x01(\tR\vpaymentLink\x12\x1f\n" +
 	"\vcustomer_id\x18\x05 \x01(\tR\n" +
 	"customerId\"B\n" +
 	"\x0fGetOrderRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x05R\x02id\x12\x1f\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1f\n" +
 	"\vcustomer_id\x18\x02 \x01(\tR\n" +
 	"customerId\"\xa6\x01\n" +
 	"\x12CreateOrderRequest\x12\x1f\n" +

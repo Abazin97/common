@@ -11,18 +11,18 @@ service OrderService {
 }
 
 message ItemsQuantity {
-  int32 id = 1;
+  string id = 1;
 }
 
 message Item {
-  int32 id = 1;
+  string id = 1;
   string name = 2;
   int32 quantity = 3;
   string price = 4;
 }
 
 message Order {
-  int32 id = 1;
+  string id = 1;
   string status = 2;
   repeated Item items = 3;
   string payment_link = 4;
@@ -30,7 +30,7 @@ message Order {
 }
 
 message GetOrderRequest {
-  int32 id = 1;
+  string id = 1;
   string customer_id = 2;
 }
 

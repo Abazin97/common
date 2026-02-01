@@ -25,6 +25,7 @@ const (
 type ItemsQuantity struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Quantity      int32                  `protobuf:"varint,2,opt,name=quantity,proto3" json:"quantity,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -64,6 +65,13 @@ func (x *ItemsQuantity) GetId() string {
 		return x.Id
 	}
 	return ""
+}
+
+func (x *ItemsQuantity) GetQuantity() int32 {
+	if x != nil {
+		return x.Quantity
+	}
+	return 0
 }
 
 type Item struct {
@@ -264,8 +272,8 @@ func (x *GetOrderRequest) GetCustomerId() string {
 
 type CreateOrderRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	CustomerId    string  `protobuf:"bytes,1,opt,name=customer_id,json=customerId,proto3" json:"customer_id,omitempty"`
-	Items         []*Item `protobuf:"bytes,2,rep,name=items,proto3" json:"items,omitempty"`
+	CustomerId    string           `protobuf:"bytes,1,opt,name=customer_id,json=customerId,proto3" json:"customer_id,omitempty"`
+	Items         []*ItemsQuantity `protobuf:"bytes,2,rep,name=items,proto3" json:"items,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -307,7 +315,7 @@ func (x *CreateOrderRequest) GetCustomerId() string {
 	return ""
 }
 
-func (x *CreateOrderRequest) GetItems() []*Item {
+func (x *CreateOrderRequest) GetItems() []*ItemsQuantity {
 	if x != nil {
 		return x.Items
 	}
@@ -370,9 +378,10 @@ var File_order_proto protoreflect.FileDescriptor
 
 const file_order_proto_rawDesc = "" +
 	"\n" +
-	"\vorder.proto\x12\border.v1\"\x1f\n" +
+	"\vorder.proto\x12\border.v1\";\n" +
 	"\rItemsQuantity\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"\\\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1a\n" +
+	"\bquantity\x18\x02 \x01(\x05R\bquantity\"\\\n" +
 	"\x04Item\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x1a\n" +
@@ -388,11 +397,11 @@ const file_order_proto_rawDesc = "" +
 	"\x0fGetOrderRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1f\n" +
 	"\vcustomer_id\x18\x02 \x01(\tR\n" +
-	"customerId\"\xa6\x01\n" +
+	"customerId\"\xaf\x01\n" +
 	"\x12CreateOrderRequest\x12\x1f\n" +
 	"\vcustomer_id\x18\x01 \x01(\tR\n" +
-	"customerId\x12$\n" +
-	"\x05items\x18\x02 \x03(\v2\x0e.order.v1.ItemR\x05items\x1aI\n" +
+	"customerId\x12-\n" +
+	"\x05items\x18\x02 \x03(\v2\x17.order.v1.ItemsQuantityR\x05items\x1aI\n" +
 	"\fOrderProduct\x12\x1d\n" +
 	"\n" +
 	"product_id\x18\x01 \x01(\tR\tproductId\x12\x1a\n" +
@@ -425,7 +434,7 @@ var file_order_proto_goTypes = []any{
 }
 var file_order_proto_depIdxs = []int32{
 	1, // 0: order.v1.Order.items:type_name -> order.v1.Item
-	1, // 1: order.v1.CreateOrderRequest.items:type_name -> order.v1.Item
+	0, // 1: order.v1.CreateOrderRequest.items:type_name -> order.v1.ItemsQuantity
 	4, // 2: order.v1.OrderService.CreateOrder:input_type -> order.v1.CreateOrderRequest
 	3, // 3: order.v1.OrderService.GetOrder:input_type -> order.v1.GetOrderRequest
 	2, // 4: order.v1.OrderService.UpdateOrder:input_type -> order.v1.Order

@@ -35,6 +35,10 @@ message GetOrderRequest {
   string customer_id = 2;
 }
 
+message GetOrderResponse {
+  repeated Order orders = 1;
+}
+
 message CreateOrderRequest {
   message OrderProduct {
     string product_id = 1;

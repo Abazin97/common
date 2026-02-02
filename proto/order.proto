@@ -6,7 +6,7 @@ option go_package = "/order;order";
 
 service OrderService {
   rpc CreateOrder(CreateOrderRequest) returns (Order);
-  rpc GetOrder(GetOrderRequest) returns (Order);
+  rpc GetOrder(GetOrderRequest) returns (GetOrderResponse);
   rpc UpdateOrder(Order) returns (Order);
 }
 

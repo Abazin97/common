@@ -451,10 +451,10 @@ const file_order_proto_rawDesc = "" +
 	"\fOrderProduct\x12\x1d\n" +
 	"\n" +
 	"product_id\x18\x01 \x01(\tR\tproductId\x12\x1a\n" +
-	"\bquantity\x18\x02 \x01(\x05R\bquantity2\xb5\x01\n" +
+	"\bquantity\x18\x02 \x01(\x05R\bquantity2\xc0\x01\n" +
 	"\fOrderService\x12<\n" +
-	"\vCreateOrder\x12\x1c.order.v1.CreateOrderRequest\x1a\x0f.order.v1.Order\x126\n" +
-	"\bGetOrder\x12\x19.order.v1.GetOrderRequest\x1a\x0f.order.v1.Order\x12/\n" +
+	"\vCreateOrder\x12\x1c.order.v1.CreateOrderRequest\x1a\x0f.order.v1.Order\x12A\n" +
+	"\bGetOrder\x12\x19.order.v1.GetOrderRequest\x1a\x1a.order.v1.GetOrderResponse\x12/\n" +
 	"\vUpdateOrder\x12\x0f.order.v1.Order\x1a\x0f.order.v1.OrderB\x0eZ\f/order;orderb\x06proto3"
 
 var (
@@ -487,7 +487,7 @@ var file_order_proto_depIdxs = []int32{
 	3, // 4: order.v1.OrderService.GetOrder:input_type -> order.v1.GetOrderRequest
 	2, // 5: order.v1.OrderService.UpdateOrder:input_type -> order.v1.Order
 	2, // 6: order.v1.OrderService.CreateOrder:output_type -> order.v1.Order
-	2, // 7: order.v1.OrderService.GetOrder:output_type -> order.v1.Order
+	4, // 7: order.v1.OrderService.GetOrder:output_type -> order.v1.GetOrderResponse
 	2, // 8: order.v1.OrderService.UpdateOrder:output_type -> order.v1.Order
 	6, // [6:9] is the sub-list for method output_type
 	3, // [3:6] is the sub-list for method input_type

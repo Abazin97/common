@@ -28,7 +28,7 @@ message GetAvailabilityRequest {
 }
 
 message GetAvailabilityResponse {
-  int32 available = 1;
+  bool available = 1;
 }
 
 message ReleaseRequest {

@@ -10,11 +10,6 @@ service OrderService {
   rpc UpdateOrder(Order) returns (Order);
 }
 
-service StockService {
-  rpc CheckItemStock(CheckItemStockRequest) returns (CheckItemStockResponse);
-  rpc GetItem(GetItemRequest) returns (GetItemResponse);
-}
-
 message ItemsQuantity {
   string id = 1;
   int32 quantity = 2;
@@ -51,21 +46,4 @@ message CreateOrderRequest {
   }
   string customer_id = 1;
   repeated ItemsQuantity items = 2;
-}
-
-message CheckItemStockRequest{
-  repeated ItemsQuantity items = 1;
-}
-
-message CheckItemStockResponse{
-  bool in_stock = 1;
-  repeated Item items = 2;
-}
-
-message GetItemRequest {
-  repeated string items_id = 1;
-}
-
-message GetItemResponse {
-  repeated Item items = 1;
 }

@@ -12,6 +12,7 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -20,16 +21,20 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	StockService_CheckIfItemIsInStock_FullMethodName = "/stock.v1.StockService/CheckIfItemIsInStock"
-	StockService_GetItems_FullMethodName             = "/stock.v1.StockService/GetItems"
+	StockService_GetAvailability_FullMethodName = "/stock.v1.StockService/GetAvailability"
+	StockService_Release_FullMethodName         = "/stock.v1.StockService/Release"
+	StockService_Confirm_FullMethodName         = "/stock.v1.StockService/Confirm"
+	StockService_Reserve_FullMethodName         = "/stock.v1.StockService/Reserve"
 )
 
 // StockServiceClient is the client API for StockService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type StockServiceClient interface {
-	CheckIfItemIsInStock(ctx context.Context, in *CheckIfItemIsInStockRequest, opts ...grpc.CallOption) (*CheckIfItemIsInStockResponse, error)
-	GetItems(ctx context.Context, in *GetItemsRequest, opts ...grpc.CallOption) (*GetItemsResponse, error)
+	GetAvailability(ctx context.Context, in *GetAvailabilityRequest, opts ...grpc.CallOption) (*GetAvailabilityResponse, error)
+	Release(ctx context.Context, in *ReleaseRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	Confirm(ctx context.Context, in *ConfirmRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	Reserve(ctx context.Context, in *ReserveRequest, opts ...grpc.CallOption) (*ReserveResponse, error)
 }
 
 type stockServiceClient struct {
@@ -40,20 +45,40 @@ func NewStockServiceClient(cc grpc.ClientConnInterface) StockServiceClient {
 	return &stockServiceClient{cc}
 }
 
-func (c *stockServiceClient) CheckIfItemIsInStock(ctx context.Context, in *CheckIfItemIsInStockRequest, opts ...grpc.CallOption) (*CheckIfItemIsInStockResponse, error) {
+func (c *stockServiceClient) GetAvailability(ctx context.Context, in *GetAvailabilityRequest, opts ...grpc.CallOption) (*GetAvailabilityResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(CheckIfItemIsInStockResponse)
-	err := c.cc.Invoke(ctx, StockService_CheckIfItemIsInStock_FullMethodName, in, out, cOpts...)
+	out := new(GetAvailabilityResponse)
+	err := c.cc.Invoke(ctx, StockService_GetAvailability_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *stockServiceClient) GetItems(ctx context.Context, in *GetItemsRequest, opts ...grpc.CallOption) (*GetItemsResponse, error) {
+func (c *stockServiceClient) Release(ctx context.Context, in *ReleaseRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetItemsResponse)
-	err := c.cc.Invoke(ctx, StockService_GetItems_FullMethodName, in, out, cOpts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, StockService_Release_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *stockServiceClient) Confirm(ctx context.Context, in *ConfirmRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, StockService_Confirm_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *stockServiceClient) Reserve(ctx context.Context, in *ReserveRequest, opts ...grpc.CallOption) (*ReserveResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ReserveResponse)
+	err := c.cc.Invoke(ctx, StockService_Reserve_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -64,8 +89,10 @@ func (c *stockServiceClient) GetItems(ctx context.Context, in *GetItemsRequest, 
 // All implementations must embed UnimplementedStockServiceServer
 // for forward compatibility.
 type StockServiceServer interface {
-	CheckIfItemIsInStock(context.Context, *CheckIfItemIsInStockRequest) (*CheckIfItemIsInStockResponse, error)
-	GetItems(context.Context, *GetItemsRequest) (*GetItemsResponse, error)
+	GetAvailability(context.Context, *GetAvailabilityRequest) (*GetAvailabilityResponse, error)
+	Release(context.Context, *ReleaseRequest) (*emptypb.Empty, error)
+	Confirm(context.Context, *ConfirmRequest) (*emptypb.Empty, error)
+	Reserve(context.Context, *ReserveRequest) (*ReserveResponse, error)
 	mustEmbedUnimplementedStockServiceServer()
 }
 
@@ -76,11 +103,17 @@ type StockServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedStockServiceServer struct{}
 
-func (UnimplementedStockServiceServer) CheckIfItemIsInStock(context.Context, *CheckIfItemIsInStockRequest) (*CheckIfItemIsInStockResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CheckIfItemIsInStock not implemented")
+func (UnimplementedStockServiceServer) GetAvailability(context.Context, *GetAvailabilityRequest) (*GetAvailabilityResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAvailability not implemented")
 }
-func (UnimplementedStockServiceServer) GetItems(context.Context, *GetItemsRequest) (*GetItemsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetItems not implemented")
+func (UnimplementedStockServiceServer) Release(context.Context, *ReleaseRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Release not implemented")
+}
+func (UnimplementedStockServiceServer) Confirm(context.Context, *ConfirmRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Confirm not implemented")
+}
+func (UnimplementedStockServiceServer) Reserve(context.Context, *ReserveRequest) (*ReserveResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Reserve not implemented")
 }
 func (UnimplementedStockServiceServer) mustEmbedUnimplementedStockServiceServer() {}
 func (UnimplementedStockServiceServer) testEmbeddedByValue()                      {}
@@ -103,38 +136,74 @@ func RegisterStockServiceServer(s grpc.ServiceRegistrar, srv StockServiceServer)
 	s.RegisterService(&StockService_ServiceDesc, srv)
 }
 
-func _StockService_CheckIfItemIsInStock_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CheckIfItemIsInStockRequest)
+func _StockService_GetAvailability_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAvailabilityRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(StockServiceServer).CheckIfItemIsInStock(ctx, in)
+		return srv.(StockServiceServer).GetAvailability(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: StockService_CheckIfItemIsInStock_FullMethodName,
+		FullMethod: StockService_GetAvailability_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(StockServiceServer).CheckIfItemIsInStock(ctx, req.(*CheckIfItemIsInStockRequest))
+		return srv.(StockServiceServer).GetAvailability(ctx, req.(*GetAvailabilityRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _StockService_GetItems_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetItemsRequest)
+func _StockService_Release_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReleaseRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(StockServiceServer).GetItems(ctx, in)
+		return srv.(StockServiceServer).Release(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: StockService_GetItems_FullMethodName,
+		FullMethod: StockService_Release_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(StockServiceServer).GetItems(ctx, req.(*GetItemsRequest))
+		return srv.(StockServiceServer).Release(ctx, req.(*ReleaseRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _StockService_Confirm_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ConfirmRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StockServiceServer).Confirm(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: StockService_Confirm_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StockServiceServer).Confirm(ctx, req.(*ConfirmRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _StockService_Reserve_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReserveRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StockServiceServer).Reserve(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: StockService_Reserve_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StockServiceServer).Reserve(ctx, req.(*ReserveRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -147,12 +216,20 @@ var StockService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*StockServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "CheckIfItemIsInStock",
-			Handler:    _StockService_CheckIfItemIsInStock_Handler,
+			MethodName: "GetAvailability",
+			Handler:    _StockService_GetAvailability_Handler,
 		},
 		{
-			MethodName: "GetItems",
-			Handler:    _StockService_GetItems_Handler,
+			MethodName: "Release",
+			Handler:    _StockService_Release_Handler,
+		},
+		{
+			MethodName: "Confirm",
+			Handler:    _StockService_Confirm_Handler,
+		},
+		{
+			MethodName: "Reserve",
+			Handler:    _StockService_Reserve_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

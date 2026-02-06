@@ -1,40 +1,53 @@
 syntax = "proto3";
 
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+
 package stock.v1;
 
 option go_package = "/stock;stock";
 
 service StockService {
-  rpc CheckIfItemIsInStock(CheckIfItemIsInStockRequest) returns (CheckIfItemIsInStockResponse);
-  rpc GetItems(GetItemsRequest) returns (GetItemsResponse);
+  rpc GetAvailability(GetAvailabilityRequest) returns (GetAvailabilityResponse);
+  rpc Release(ReleaseRequest) returns (google.protobuf.Empty);
+  rpc Confirm(ConfirmRequest) returns (google.protobuf.Empty);
+  rpc Reserve(ReserveRequest) returns (ReserveResponse);
 }
 
 message ItemsQuantity {
   string id = 1;
-}
-
-message Item {
-  string id = 1;
-  string name = 2;
-  int32 quantity = 3;
-  string price = 4;
+  int32 quantity = 2;
 }
 
 
-
-message CheckIfItemIsInStockRequest {
-  repeated ItemsQuantity Items = 1;
+message GetAvailabilityRequest {
+  string lot_id = 1;
+  google.protobuf.Timestamp from = 2;
+  google.protobuf.Timestamp to = 3;
 }
 
-message CheckIfItemIsInStockResponse {
-  bool InStock = 1;
-  repeated Item Items = 2;
+message GetAvailabilityResponse {
+  int32 available = 1;
 }
 
-message GetItemsRequest {
-  repeated string ItemIDs = 1;
+message ReleaseRequest {
+  string reservation_id = 1;
 }
 
-message GetItemsResponse {
-  repeated Item Items = 1;
+message ConfirmRequest {
+  string reservation_id = 1;
+}
+
+message ReserveRequest {
+  string lot_id = 1;
+  string order_id = 2;
+  google.protobuf.Timestamp from = 3;
+  google.protobuf.Timestamp to = 4;
+  int32 count = 5;
+}
+
+message ReserveResponse {
+  string reservation_id = 1;
+  google.protobuf.Timestamp expires_at = 2;
 }

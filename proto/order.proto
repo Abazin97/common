@@ -33,6 +33,7 @@ message Order {
 message GetOrderRequest {
   string id = 1;
   string customer_id = 2;
+  string lot_id = 3;
 }
 
 message GetOrderResponse {

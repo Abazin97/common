@@ -222,7 +222,6 @@ type GetOrderRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	CustomerId    string                 `protobuf:"bytes,2,opt,name=customer_id,json=customerId,proto3" json:"customer_id,omitempty"`
-	LotId         string                 `protobuf:"bytes,3,opt,name=lot_id,json=lotId,proto3" json:"lot_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -267,13 +266,6 @@ func (x *GetOrderRequest) GetId() string {
 func (x *GetOrderRequest) GetCustomerId() string {
 	if x != nil {
 		return x.CustomerId
-	}
-	return ""
-}
-
-func (x *GetOrderRequest) GetLotId() string {
-	if x != nil {
-		return x.LotId
 	}
 	return ""
 }
@@ -326,6 +318,7 @@ type CreateOrderRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	CustomerId    string           `protobuf:"bytes,1,opt,name=customer_id,json=customerId,proto3" json:"customer_id,omitempty"`
 	Items         []*ItemsQuantity `protobuf:"bytes,2,rep,name=items,proto3" json:"items,omitempty"`
+	LotId         string           `protobuf:"bytes,3,opt,name=lot_id,json=lotId,proto3" json:"lot_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -372,6 +365,13 @@ func (x *CreateOrderRequest) GetItems() []*ItemsQuantity {
 		return x.Items
 	}
 	return nil
+}
+
+func (x *CreateOrderRequest) GetLotId() string {
+	if x != nil {
+		return x.LotId
+	}
+	return ""
 }
 
 type CreateOrderRequest_OrderProduct struct {
@@ -445,18 +445,18 @@ const file_order_proto_rawDesc = "" +
 	"\x05items\x18\x03 \x03(\v2\x0e.order.v1.ItemR\x05items\x12!\n" +
 	"\fpayment_link\x18\x04 \x01(\tR\vpaymentLink\x12\x1f\n" +
 	"\vcustomer_id\x18\x05 \x01(\tR\n" +
-	"customerId\"Y\n" +
+	"customerId\"B\n" +
 	"\x0fGetOrderRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1f\n" +
 	"\vcustomer_id\x18\x02 \x01(\tR\n" +
-	"customerId\x12\x15\n" +
-	"\x06lot_id\x18\x03 \x01(\tR\x05lotId\";\n" +
+	"customerId\";\n" +
 	"\x10GetOrderResponse\x12'\n" +
-	"\x06orders\x18\x01 \x03(\v2\x0f.order.v1.OrderR\x06orders\"\xaf\x01\n" +
+	"\x06orders\x18\x01 \x03(\v2\x0f.order.v1.OrderR\x06orders\"\xc6\x01\n" +
 	"\x12CreateOrderRequest\x12\x1f\n" +
 	"\vcustomer_id\x18\x01 \x01(\tR\n" +
 	"customerId\x12-\n" +
-	"\x05items\x18\x02 \x03(\v2\x17.order.v1.ItemsQuantityR\x05items\x1aI\n" +
+	"\x05items\x18\x02 \x03(\v2\x17.order.v1.ItemsQuantityR\x05items\x12\x15\n" +
+	"\x06lot_id\x18\x03 \x01(\tR\x05lotId\x1aI\n" +
 	"\fOrderProduct\x12\x1d\n" +
 	"\n" +
 	"product_id\x18\x01 \x01(\tR\tproductId\x12\x1a\n" +

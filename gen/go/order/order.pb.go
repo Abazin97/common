@@ -13,6 +13,7 @@ import (
 
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 )
 
 const (
@@ -319,6 +320,8 @@ type CreateOrderRequest struct {
 	CustomerId    string           `protobuf:"bytes,1,opt,name=customer_id,json=customerId,proto3" json:"customer_id,omitempty"`
 	Items         []*ItemsQuantity `protobuf:"bytes,2,rep,name=items,proto3" json:"items,omitempty"`
 	LotId         string           `protobuf:"bytes,3,opt,name=lot_id,json=lotId,proto3" json:"lot_id,omitempty"`
+	From          *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=from,proto3" json:"from,omitempty"`
+	To            *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=to,proto3" json:"to,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -372,6 +375,20 @@ func (x *CreateOrderRequest) GetLotId() string {
 		return x.LotId
 	}
 	return ""
+}
+
+func (x *CreateOrderRequest) GetFrom() *timestamppb.Timestamp {
+	if x != nil {
+		return x.From
+	}
+	return nil
+}
+
+func (x *CreateOrderRequest) GetTo() *timestamppb.Timestamp {
+	if x != nil {
+		return x.To
+	}
+	return nil
 }
 
 type CreateOrderRequest_OrderProduct struct {
@@ -430,7 +447,7 @@ var File_order_proto protoreflect.FileDescriptor
 
 const file_order_proto_rawDesc = "" +
 	"\n" +
-	"\vorder.proto\x12\border.v1\";\n" +
+	"\vorder.proto\x12\border.v1\x1a\x1fgoogle/protobuf/timestamp.proto\";\n" +
 	"\rItemsQuantity\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1a\n" +
 	"\bquantity\x18\x02 \x01(\x05R\bquantity\"\\\n" +
@@ -451,12 +468,14 @@ const file_order_proto_rawDesc = "" +
 	"\vcustomer_id\x18\x02 \x01(\tR\n" +
 	"customerId\";\n" +
 	"\x10GetOrderResponse\x12'\n" +
-	"\x06orders\x18\x01 \x03(\v2\x0f.order.v1.OrderR\x06orders\"\xc6\x01\n" +
+	"\x06orders\x18\x01 \x03(\v2\x0f.order.v1.OrderR\x06orders\"\xa2\x02\n" +
 	"\x12CreateOrderRequest\x12\x1f\n" +
 	"\vcustomer_id\x18\x01 \x01(\tR\n" +
 	"customerId\x12-\n" +
 	"\x05items\x18\x02 \x03(\v2\x17.order.v1.ItemsQuantityR\x05items\x12\x15\n" +
-	"\x06lot_id\x18\x03 \x01(\tR\x05lotId\x1aI\n" +
+	"\x06lot_id\x18\x03 \x01(\tR\x05lotId\x12.\n" +
+	"\x04from\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\x04from\x12*\n" +
+	"\x02to\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\x02to\x1aI\n" +
 	"\fOrderProduct\x12\x1d\n" +
 	"\n" +
 	"product_id\x18\x01 \x01(\tR\tproductId\x12\x1a\n" +
@@ -487,22 +506,25 @@ var file_order_proto_goTypes = []any{
 	(*GetOrderResponse)(nil),                // 4: order.v1.GetOrderResponse
 	(*CreateOrderRequest)(nil),              // 5: order.v1.CreateOrderRequest
 	(*CreateOrderRequest_OrderProduct)(nil), // 6: order.v1.CreateOrderRequest.OrderProduct
+	(*timestamppb.Timestamp)(nil),           // 7: google.protobuf.Timestamp
 }
 var file_order_proto_depIdxs = []int32{
 	1, // 0: order.v1.Order.items:type_name -> order.v1.Item
 	2, // 1: order.v1.GetOrderResponse.orders:type_name -> order.v1.Order
 	0, // 2: order.v1.CreateOrderRequest.items:type_name -> order.v1.ItemsQuantity
-	5, // 3: order.v1.OrderService.CreateOrder:input_type -> order.v1.CreateOrderRequest
-	3, // 4: order.v1.OrderService.GetOrder:input_type -> order.v1.GetOrderRequest
-	2, // 5: order.v1.OrderService.UpdateOrder:input_type -> order.v1.Order
-	2, // 6: order.v1.OrderService.CreateOrder:output_type -> order.v1.Order
-	2, // 7: order.v1.OrderService.GetOrder:output_type -> order.v1.Order
-	2, // 8: order.v1.OrderService.UpdateOrder:output_type -> order.v1.Order
-	6, // [6:9] is the sub-list for method output_type
-	3, // [3:6] is the sub-list for method input_type
-	3, // [3:3] is the sub-list for extension type_name
-	3, // [3:3] is the sub-list for extension extendee
-	0, // [0:3] is the sub-list for field type_name
+	7, // 3: order.v1.CreateOrderRequest.from:type_name -> google.protobuf.Timestamp
+	7, // 4: order.v1.CreateOrderRequest.to:type_name -> google.protobuf.Timestamp
+	5, // 5: order.v1.OrderService.CreateOrder:input_type -> order.v1.CreateOrderRequest
+	3, // 6: order.v1.OrderService.GetOrder:input_type -> order.v1.GetOrderRequest
+	2, // 7: order.v1.OrderService.UpdateOrder:input_type -> order.v1.Order
+	2, // 8: order.v1.OrderService.CreateOrder:output_type -> order.v1.Order
+	2, // 9: order.v1.OrderService.GetOrder:output_type -> order.v1.Order
+	2, // 10: order.v1.OrderService.UpdateOrder:output_type -> order.v1.Order
+	8, // [8:11] is the sub-list for method output_type
+	5, // [5:8] is the sub-list for method input_type
+	5, // [5:5] is the sub-list for extension type_name
+	5, // [5:5] is the sub-list for extension extendee
+	0, // [0:5] is the sub-list for field type_name
 }
 
 func init() { file_order_proto_init() }

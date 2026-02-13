@@ -47,7 +47,7 @@ message CreateOrderRequest {
   }
   string customer_id = 1;
   repeated ItemsQuantity items = 2;
-  string lot_id = 3;
+  string id = 3;
   google.protobuf.Timestamp from = 4;
   google.protobuf.Timestamp to = 5;
 }

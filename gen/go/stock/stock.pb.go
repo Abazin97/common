@@ -138,7 +138,7 @@ func (x *GetAvailabilityRequest) GetTo() *timestamppb.Timestamp {
 
 type GetAvailabilityResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Available     bool                   `protobuf:"varint,1,opt,name=available,proto3" json:"available,omitempty"`
+	Available     string                 `protobuf:"bytes,1,opt,name=available,proto3" json:"available,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -173,11 +173,11 @@ func (*GetAvailabilityResponse) Descriptor() ([]byte, []int) {
 	return file_stock_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *GetAvailabilityResponse) GetAvailable() bool {
+func (x *GetAvailabilityResponse) GetAvailable() string {
 	if x != nil {
 		return x.Available
 	}
-	return false
+	return ""
 }
 
 type ReleaseRequest struct {
@@ -270,7 +270,7 @@ func (x *ConfirmRequest) GetReservationId() string {
 
 type ReserveRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	LotId         string                 `protobuf:"bytes,1,opt,name=lot_id,json=lotId,proto3" json:"lot_id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	OrderId       string                 `protobuf:"bytes,2,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`
 	From          *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=from,proto3" json:"from,omitempty"`
 	To            *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=to,proto3" json:"to,omitempty"`
@@ -309,9 +309,9 @@ func (*ReserveRequest) Descriptor() ([]byte, []int) {
 	return file_stock_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *ReserveRequest) GetLotId() string {
+func (x *ReserveRequest) GetId() string {
 	if x != nil {
-		return x.LotId
+		return x.Id
 	}
 	return ""
 }
@@ -409,13 +409,13 @@ const file_stock_proto_rawDesc = "" +
 	"\x04from\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\x04from\x12*\n" +
 	"\x02to\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\x02to\"7\n" +
 	"\x17GetAvailabilityResponse\x12\x1c\n" +
-	"\tavailable\x18\x01 \x01(\bR\tavailable\"7\n" +
+	"\tavailable\x18\x01 \x01(\tR\tavailable\"7\n" +
 	"\x0eReleaseRequest\x12%\n" +
 	"\x0ereservation_id\x18\x01 \x01(\tR\rreservationId\"7\n" +
 	"\x0eConfirmRequest\x12%\n" +
-	"\x0ereservation_id\x18\x01 \x01(\tR\rreservationId\"\xb4\x01\n" +
-	"\x0eReserveRequest\x12\x15\n" +
-	"\x06lot_id\x18\x01 \x01(\tR\x05lotId\x12\x19\n" +
+	"\x0ereservation_id\x18\x01 \x01(\tR\rreservationId\"\xad\x01\n" +
+	"\x0eReserveRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x19\n" +
 	"\border_id\x18\x02 \x01(\tR\aorderId\x12.\n" +
 	"\x04from\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\x04from\x12*\n" +
 	"\x02to\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\x02to\x12\x14\n" +

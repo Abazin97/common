@@ -138,7 +138,7 @@ func (x *GetAvailabilityRequest) GetTo() *timestamppb.Timestamp {
 
 type GetAvailabilityResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Available     string                 `protobuf:"bytes,1,opt,name=available,proto3" json:"available,omitempty"`
+	Available     bool                   `protobuf:"varint,1,opt,name=available,proto3" json:"available,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -173,11 +173,11 @@ func (*GetAvailabilityResponse) Descriptor() ([]byte, []int) {
 	return file_stock_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *GetAvailabilityResponse) GetAvailable() string {
+func (x *GetAvailabilityResponse) GetAvailable() bool {
 	if x != nil {
 		return x.Available
 	}
-	return ""
+	return false
 }
 
 type ReleaseRequest struct {
@@ -409,7 +409,7 @@ const file_stock_proto_rawDesc = "" +
 	"\x04from\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\x04from\x12*\n" +
 	"\x02to\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\x02to\"7\n" +
 	"\x17GetAvailabilityResponse\x12\x1c\n" +
-	"\tavailable\x18\x01 \x01(\tR\tavailable\"7\n" +
+	"\tavailable\x18\x01 \x01(\bR\tavailable\"7\n" +
 	"\x0eReleaseRequest\x12%\n" +
 	"\x0ereservation_id\x18\x01 \x01(\tR\rreservationId\"7\n" +
 	"\x0eConfirmRequest\x12%\n" +

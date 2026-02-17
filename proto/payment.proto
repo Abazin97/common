@@ -10,7 +10,7 @@ service PaymentService {
 
 message CreatePaymentRequest {
   string order_id = 1;
-  int64 amount = 2;
+  string amount = 2;
   string currency = 3;
 }
 

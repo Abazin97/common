@@ -25,7 +25,7 @@ const (
 type CreatePaymentRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	OrderId       string                 `protobuf:"bytes,1,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`
-	Amount        int64                  `protobuf:"varint,2,opt,name=amount,proto3" json:"amount,omitempty"`
+	Amount        string                 `protobuf:"bytes,2,opt,name=amount,proto3" json:"amount,omitempty"`
 	Currency      string                 `protobuf:"bytes,3,opt,name=currency,proto3" json:"currency,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -68,11 +68,11 @@ func (x *CreatePaymentRequest) GetOrderId() string {
 	return ""
 }
 
-func (x *CreatePaymentRequest) GetAmount() int64 {
+func (x *CreatePaymentRequest) GetAmount() string {
 	if x != nil {
 		return x.Amount
 	}
-	return 0
+	return ""
 }
 
 func (x *CreatePaymentRequest) GetCurrency() string {
@@ -150,7 +150,7 @@ const file_payment_proto_rawDesc = "" +
 	"payment.v1\"e\n" +
 	"\x14CreatePaymentRequest\x12\x19\n" +
 	"\border_id\x18\x01 \x01(\tR\aorderId\x12\x16\n" +
-	"\x06amount\x18\x02 \x01(\x03R\x06amount\x12\x1a\n" +
+	"\x06amount\x18\x02 \x01(\tR\x06amount\x12\x1a\n" +
 	"\bcurrency\x18\x03 \x01(\tR\bcurrency\"o\n" +
 	"\x15CreatePaymentResponse\x12\x1d\n" +
 	"\n" +

@@ -535,11 +535,11 @@ const file_order_proto_rawDesc = "" +
 	"\bquantity\x18\x02 \x01(\x05R\bquantity\"M\n" +
 	"\x18UpdateOrderStatusRequest\x12\x19\n" +
 	"\border_id\x18\x01 \x01(\tR\aorderId\x12\x16\n" +
-	"\x06status\x18\x02 \x01(\tR\x06status2\xbc\x01\n" +
+	"\x06status\x18\x02 \x01(\tR\x06status2\xcf\x01\n" +
 	"\fOrderService\x12<\n" +
 	"\vCreateOrder\x12\x1c.order.v1.CreateOrderRequest\x1a\x0f.order.v1.Order\x126\n" +
-	"\bGetOrder\x12\x19.order.v1.GetOrderRequest\x1a\x0f.order.v1.Order\x126\n" +
-	"\vUpdateOrder\x12\x0f.order.v1.Order\x1a\x16.google.protobuf.EmptyB\x0eZ\f/order;orderb\x06proto3"
+	"\bGetOrder\x12\x19.order.v1.GetOrderRequest\x1a\x0f.order.v1.Order\x12I\n" +
+	"\vUpdateOrder\x12\".order.v1.UpdateOrderStatusRequest\x1a\x16.google.protobuf.EmptyB\x0eZ\f/order;orderb\x06proto3"
 
 var (
 	file_order_proto_rawDescOnce sync.Once
@@ -574,7 +574,7 @@ var file_order_proto_depIdxs = []int32{
 	8, // 4: order.v1.CreateOrderRequest.to:type_name -> google.protobuf.Timestamp
 	5, // 5: order.v1.OrderService.CreateOrder:input_type -> order.v1.CreateOrderRequest
 	3, // 6: order.v1.OrderService.GetOrder:input_type -> order.v1.GetOrderRequest
-	2, // 7: order.v1.OrderService.UpdateOrder:input_type -> order.v1.Order
+	6, // 7: order.v1.OrderService.UpdateOrder:input_type -> order.v1.UpdateOrderStatusRequest
 	2, // 8: order.v1.OrderService.CreateOrder:output_type -> order.v1.Order
 	2, // 9: order.v1.OrderService.GetOrder:output_type -> order.v1.Order
 	9, // 10: order.v1.OrderService.UpdateOrder:output_type -> google.protobuf.Empty

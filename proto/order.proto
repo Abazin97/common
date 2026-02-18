@@ -9,7 +9,7 @@ option go_package = "/order;order";
 service OrderService {
   rpc CreateOrder(CreateOrderRequest) returns (Order);
   rpc GetOrder(GetOrderRequest) returns (Order);
-  rpc UpdateOrder(Order) returns (google.protobuf.Empty);
+  rpc UpdateOrder(UpdateOrderStatusRequest) returns (google.protobuf.Empty);
 }
 
 message ItemsQuantity {

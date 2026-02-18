@@ -1,5 +1,6 @@
 syntax = "proto3";
 import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
 
 package order.v1;
 
@@ -8,7 +9,7 @@ option go_package = "/order;order";
 service OrderService {
   rpc CreateOrder(CreateOrderRequest) returns (Order);
   rpc GetOrder(GetOrderRequest) returns (Order);
-  rpc UpdateOrder(Order) returns (Order);
+  rpc UpdateOrder(Order) returns (google.protobuf.Empty);
 }
 
 message ItemsQuantity {
@@ -50,4 +51,9 @@ message CreateOrderRequest {
   string id = 3;
   google.protobuf.Timestamp from = 4;
   google.protobuf.Timestamp to = 5;
+}
+
+message UpdateOrderStatusRequest {
+  string order_id = 1;
+  string status = 2;
 }
